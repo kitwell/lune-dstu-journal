@@ -299,6 +299,7 @@ def main_window():
     # здесь функция для настройки всего-всего перед запуском
 
     # print(list(window.key_dict.keys()))
+
     while True:
         event, values = window.read()
         if event == sg.WINDOW_CLOSED:
@@ -484,7 +485,7 @@ def main_window():
                         if values['-SHOW_MISSES-']:  # если нужно считать пропуски
                             if cell.value is not None:
                                 # ищем студента
-                                if match(r'[A-zА-яёЁ]{2,}\s+[A-ZА-ЯЁ]\.\s*[A-ZА-ЯЁ]\.', str(cell.value)):
+                                if match(r'[A-zА-яёЁ]{2,}\s+([A-ZА-ЯЁ]\.|[A-zА-яёЁ]{2,})\s*([A-ZА-ЯЁ]\.|[A-zА-яёЁ]{2,})', str(cell.value)):
                                     student_name = cell.value
                                 elif search(r'\d+', str(cell.value)):  # ищем пропуски
                                     if final_sheet[sub(r'\d+', '2', cell.coordinate)].value == 'Пропуски':
